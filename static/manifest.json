@@ -1,0 +1,17 @@
+{
+  "short_name": "",
+  "name": "",
+  "description": "正法APP管理系统",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/air/monitor-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "theme_color": "#51b0ff",
+  "background_color": "#235a73"
+}
