@@ -4,7 +4,7 @@ export const state = () => ({
   messageList: [],
   timeout: 2500,
   options: {
-    icon: '/wc.png',
+    icon: '/logo.png',
     renotify: true,
     vibrate: [100, 50, 100],
     actions: [{ action: 'command-action', title: '查看' }]

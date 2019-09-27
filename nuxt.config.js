@@ -1,7 +1,20 @@
 export default {
   mode: 'spa',
 
-  head: {},
+  head: {
+    titleTemplate: '%s - ' + process.env.npm_package_name,
+    title: process.env.npm_package_name || '',
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+    ],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/logo.png' },
+      { rel: 'manifest', href: '/manifest.json' },
+      { rel: 'apple-touch-icon', sizes: '409x624', href: '/logo.png' }
+    ]
+  },
 
   loading: { color: '#fff' },
 
@@ -10,9 +23,7 @@ export default {
   ],
 
   plugins: [
-    '@/plugins/axios',
-    '@/plugins/route',
-    '@/plugins/echarts'
+
   ],
 
   buildModules: [
@@ -30,48 +41,10 @@ export default {
           importScripts: ['custom-sw.js']
         },
         manifest: false
-        // icon: false,
-        // meta: false
       }
     ],
     ['@nuxtjs/moment'],
-    'nuxt-i18n'
   ],
-  i18n: {
-    locales: ['zh', 'en'],
-    defaultLocale: 'zh',
-    vueI18n: {
-      locale: 'zh',
-      fallbackLocale: 'en',
-      silentTranslationWarn: true,
-      dateTimeFormats: {
-        'en': {
-          short: {
-            year: 'numeric', month: 'short', day: 'numeric', weekday: 'short'
-          },
-          long: {
-            year: 'numeric', month: 'short', day: 'numeric', weekday: 'short'
-          }
-        },
-        'zh': {
-          short: {
-            year: 'numeric', month: 'short', day: 'numeric', weekday: 'short'
-          },
-          long: {
-            year: 'numeric', month: 'short', day: 'numeric', weekday: 'short'
-          }
-        }
-      }
-    },
-    vueI18nLoader: true,
-    detectBrowserLanguage: false,
-    vuex: {
-      moduleName: 'i18n',
-      syncLocale: true,
-      syncMessages: false,
-      syncRouteParams: true
-    }
-  },
 
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
@@ -81,7 +54,9 @@ export default {
   },
 
   build: {
-    extend (config, ctx) {}
+    extend (config, ctx) {
+
+    }
   },
 
   axios: {
@@ -91,15 +66,10 @@ export default {
   proxy: {
     '/api': {
       target: `http://120.77.206.101:4000`,
-      // target: `http://127.0.0.1:4000`,
       ws: false
     },
-    '/p-server-socket': {
+    '/socket': {
       target: `http://app.smartwc.cn/ws/cellphone/`,
-      ws: true
-    },
-    '/j-server-socket': {
-      target: `http://smartoilets.cn/socketServer/socket`,
       ws: true
     }
   },
@@ -129,26 +99,6 @@ export default {
   },
 
   env: {
-    serverHttpUrl: `https://smartoilets.cn/socketServer/front/`,
-    serverHttpUrlV2: `https://smartoilets.cn/ydc/api/v2/`,
-    serverSocketUrl: 'wss://smartoilets.cn/socketServer/socket',
-    webSocketUrl: `wss://app.smartwc.cn/ws/cellphone/`,
-    authInfo: {
-      changi: {
-        username: 'zadmin',
-        password: '123456',
-        region: 972012
-      },
-      achiever: {
-        username: 'aadmin',
-        password: '123456',
-        region: 972013
-      },
-      dpark: {
-        username: 'dadmin',
-        password: '123456',
-        region: 972008
-      }
-    }
+
   }
 }
