@@ -23,7 +23,7 @@ export default {
   ],
 
   plugins: [
-
+    '@/plugins/validate'
   ],
 
   buildModules: [
@@ -43,7 +43,7 @@ export default {
         manifest: false
       }
     ],
-    ['@nuxtjs/moment'],
+    ['@nuxtjs/moment', { defaultLocale: 'zh-cn', locales: ['zh-cn'] }]
   ],
 
   vuetify: {
@@ -65,11 +65,11 @@ export default {
 
   proxy: {
     '/api': {
-      target: `http://120.77.206.101:4000`,
+      target: `http://localhost:9000`,
       ws: false
     },
     '/socket': {
-      target: `http://app.smartwc.cn/ws/cellphone/`,
+      target: `ws://localhost:9000`,
       ws: true
     }
   },
@@ -84,8 +84,8 @@ export default {
     strategies: {
       local: {
         endpoints: {
-          login: { url: '/api/account/auth/cellphoneLogin/', method: 'post', propertyName: 'token' },
-          user: { url: '/api/account/account/', method: 'get', propertyName: 'user' },
+          login: { url: '/api/token_auth/', method: 'post', propertyName: 'access' },
+          user: { url: '/api/users/get_auth_user', method: 'get', propertyName: 'data' },
           logout: false
         }
       }

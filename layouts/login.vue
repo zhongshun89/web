@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-content>
+    <v-content class="page">
       <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut" :duration="400">
         <nuxt />
       </transition>
@@ -15,4 +15,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+  .page
+    background-color: yellow
+
 </style>

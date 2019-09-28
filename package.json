@@ -1,14 +1,14 @@
 {
-  "name": "三宝APP管理系统",
+  "name": "web",
   "version": "1.0.0",
-  "description": "三宝APP管理系统",
+  "description": "management system of three gems",
   "author": "zhong shun",
   "private": true,
   "scripts": {
-    "dev": "cross-env NUXT_HOST=0.0.0.0 NUXT_PORT=10000 nuxt",
+    "dev": "cross-env NUXT_HOST=0.0.0.0 NUXT_PORT=80 nuxt",
     "build": "nuxt build",
-    "start": "cross-env NUXT_HOST=0.0.0.0 NUXT_PORT=10000 nohup nuxt start < /dev/null >> ./out.log 2>&1 &",
-    "stop": "kill -9 $(lsof -t -i:10000)",
+    "start": "cross-env NUXT_HOST=0.0.0.0 NUXT_PORT=80 nohup nuxt start < /dev/null >> ./out.log 2>&1 &",
+    "stop": "kill -9 $(lsof -t -i:80)",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .eslintignore .",
     "fix": "eslint --fix --ext .js,.vue --ignore-path .eslintignore . "
@@ -21,7 +21,8 @@
     "lodash.clonedeep": "^4.5.0",
     "lodash.isempty": "^4.4.0",
     "nuxt": "^2.9.2",
-    "sleep-promise": "^8.0.1"
+    "sleep-promise": "^8.0.1",
+    "vee-validate": "^2.2.15"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^1.1.2",
