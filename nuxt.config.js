@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 export default {
   mode: 'spa',
 
@@ -19,6 +21,7 @@ export default {
   loading: { color: '#fff' },
 
   css: [
+    '@mdi/font/css/materialdesignicons.css',
     'animate.css/animate.css'
   ],
 
@@ -34,6 +37,7 @@ export default {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/auth',
+    '@nuxtjs/dotenv',
     ['@nuxtjs/pwa',
       {
         workbox: {
@@ -65,11 +69,11 @@ export default {
 
   proxy: {
     '/api': {
-      target: `http://localhost:9000`,
+      target: process.env.SERVER_HTTP_URL,
       ws: false
     },
     '/socket': {
-      target: `ws://localhost:9000`,
+      target: process.env.SERVER_SOCKET_URL,
       ws: true
     }
   },
@@ -96,9 +100,5 @@ export default {
     middleware: [
       'auth'
     ]
-  },
-
-  env: {
-
   }
 }

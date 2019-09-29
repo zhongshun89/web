@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <v-icon large color="green darken-2">mdi-domain</v-icon>
     <v-text-field
       v-model="username"
       v-validate="'required|max:10'"
