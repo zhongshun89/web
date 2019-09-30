@@ -22,7 +22,7 @@
     "lodash.isempty": "^4.4.0",
     "nuxt": "^2.9.2",
     "sleep-promise": "^8.0.1",
-    "vee-validate": "^2.2.15"
+    "vee-validate": "^3.0.8"
   },
   "devDependencies": {
     "@mdi/font": "^4.4.95",

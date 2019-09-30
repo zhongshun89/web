@@ -25,9 +25,7 @@ export default {
     'animate.css/animate.css'
   ],
 
-  plugins: [
-    '@/plugins/validate'
-  ],
+  plugins: [],
 
   buildModules: [
     '@nuxtjs/eslint-module',
