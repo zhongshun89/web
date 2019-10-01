@@ -2,14 +2,14 @@
   <v-container>
     <ValidationObserver v-slot="{ invalid, passes }">
       <form @submit.prevent="passes(login)">
-        <ValidationProvider v-slot="{ errors }" name="username" rules="required|max:10">
+        <ValidationProvider v-slot="{ errors }" name="用户名" rules="required|max:10">
           <v-text-field
             v-model="username"
             label="名称"
           />
           <span>{{ errors[0] }}</span>
         </ValidationProvider>
-        <ValidationProvider v-slot="{ errors }" name="password" rules="required|min:6">
+        <ValidationProvider v-slot="{ errors }" name="密码" rules="required|min:6">
           <v-text-field
             v-model="password"
             label="密码"
@@ -30,9 +30,19 @@
 <script>
 import { ValidationProvider, ValidationObserver, extend } from 'vee-validate'
 import { required, max, min } from 'vee-validate/dist/rules'
-extend('required', required)
-extend('max', max)
-extend('min', min)
+import zh from 'vee-validate/dist/locale/zh_CN'
+extend('required', {
+  ...required,
+  message: zh.messages.required
+})
+extend('max', {
+  ...max,
+  message: zh.messages.max
+})
+extend('min', {
+  ...min,
+  message: zh.messages.min
+})
 
 export default {
   layout: 'login',
@@ -51,17 +61,10 @@ export default {
   },
   methods: {
     login () {
-      this.$validator.validateAll((valid) => {
-        if (valid) {
-          this.error = null
-          return this.$auth.loginWith('local', {
-            data: {
-              username: this.username,
-              password: this.password
-            }
-          })
-        } else {
-          return false
+      return this.$auth.loginWith('local', {
+        data: {
+          username: this.username,
+          password: this.password
         }
       })
     }

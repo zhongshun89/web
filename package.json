@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
-    "start": "nohup nuxt start < /dev/null >> ./out.log 2>&1 &",
+    "start": "nuxt start",
     "stop": "kill -9 $(lsof -t -i:80)",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .eslintignore .",
