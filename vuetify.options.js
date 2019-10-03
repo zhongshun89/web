@@ -5,7 +5,7 @@ import Male from '~/components/svg/Male'
 export default {
   breakpoint: {},
   icons: {
-    iconfont: 'mdi',
+    iconfont: 'md',
     values: {
       male: {
         component: Male

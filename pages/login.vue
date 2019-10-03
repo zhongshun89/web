@@ -1,29 +1,68 @@
 <template>
-  <v-container>
-    <ValidationObserver v-slot="{ invalid, passes }">
-      <form @submit.prevent="passes(login)">
-        <ValidationProvider v-slot="{ errors }" name="用户名" rules="required|max:10">
-          <v-text-field
-            v-model="username"
-            label="名称"
-          />
-          <span>{{ errors[0] }}</span>
-        </ValidationProvider>
-        <ValidationProvider v-slot="{ errors }" name="密码" rules="required|min:6">
-          <v-text-field
-            v-model="password"
-            label="密码"
-            :append-icon="showPassword ? 'visibility_off' : 'visibility'"
-            :type="showPassword ? 'text' : 'password'"
-            @click:append="showPassword = !showPassword"
-          />
-          <span>{{ errors[0] }}</span>
-        </ValidationProvider>
-        <v-btn :disabled="invalid" color="primary" @click.prevent="passes(login)">
-          登入
-        </v-btn>
-      </form>
-    </ValidationObserver>
+  <v-container
+    class="fill-height"
+    fluid
+  >
+    <v-row
+      align="center"
+      justify="center"
+    >
+      <v-col
+        cols="12"
+        sm="8"
+        md="3"
+      >
+        <v-card class="elevation-12">
+          <v-toolbar
+            color="primary"
+            dark
+            flat
+          >
+            <v-toolbar-title class="headline">
+              三宝管理系统
+            </v-toolbar-title>
+          </v-toolbar>
+          <ValidationObserver ref="observer" v-slot="{ invalid, passes }">
+            <v-card-text>
+              <form @submit.prevent="passes(login)">
+                <ValidationProvider v-slot="{ errors }" name="用户名" rules="required|max:10">
+                  <v-text-field
+                    v-model="username"
+                    prepend-icon="person"
+                    label="名称"
+                  />
+                  <p class="red--text caption message">
+                    {{ errors[0] }}
+                  </p>
+                </ValidationProvider>
+                <ValidationProvider v-slot="{ errors }" name="密码" rules="required|min:6">
+                  <v-text-field
+                    v-model="password"
+                    prepend-icon="lock"
+                    label="密码"
+                    :append-icon="showPassword ? 'visibility_off' : 'visibility'"
+                    :type="showPassword ? 'text' : 'password'"
+                    @click:append="showPassword = !showPassword"
+                  />
+                  <p class="red--text caption message">
+                    {{ errors[0] }}
+                  </p>
+                </ValidationProvider>
+              </form>
+            </v-card-text>
+            <v-card-actions>
+              <div class="flex-grow-1" />
+              <v-btn color="primary" @click="reset">
+                重置
+              </v-btn>
+              <v-btn :disabled="invalid" color="primary" @click.prevent="passes(login)">
+                登入
+              </v-btn>
+            </v-card-actions>
+          </ValidationObserver>
+        </v-card>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -67,10 +106,17 @@ export default {
           password: this.password
         }
       })
+    },
+    reset () {
+      this.username = ''
+      this.password = ''
+      this.$refs.observer.reset()
     }
   }
 }
 </script>
 
 <style lang="sass" scoped>
+  .message
+    margin-left: 2rem
 </style>

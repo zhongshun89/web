@@ -16,6 +16,5 @@ export default {
 
 <style lang="sass" scoped>
   .page
-    background-color: yellow
-
+    background-image: url('/login-bg.jpg')
 </style>

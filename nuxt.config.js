@@ -21,7 +21,7 @@ export default {
   loading: { color: '#fff' },
 
   css: [
-    '@mdi/font/css/materialdesignicons.css',
+    'material-design-icons-iconfont/dist/material-design-icons.css',
     'animate.css/animate.css'
   ],
 
