@@ -3,7 +3,7 @@ this.workbox.core = (function (exports) {
   'use strict';
 
   try {
-    self['workbox:core:4.3.1'] && _();
+    self['workbox:home:4.3.1'] && _();
   } catch (e) {} // eslint-disable-line
 
   /*
@@ -553,13 +553,13 @@ this.workbox.core = (function (exports) {
    * there's a quota error.
    *
    * @param {Function} callback
-   * @memberof workbox.core
+   * @memberof workbox.home
    */
 
   function registerQuotaErrorCallback(callback) {
     {
       finalAssertExports.isType(callback, 'function', {
-        moduleName: 'workbox-core',
+        moduleName: 'workbox-home',
         funcName: 'register',
         paramName: 'callback'
       });
@@ -645,7 +645,7 @@ this.workbox.core = (function (exports) {
    * Runs all of the callback functions, one at a time sequentially, in the order
    * in which they were registered.
    *
-   * @memberof workbox.core
+   * @memberof workbox.home
    * @private
    */
 
@@ -719,7 +719,7 @@ this.workbox.core = (function (exports) {
    * @param {Object} [options.matchOptions]
    *
    * @private
-   * @memberof module:workbox-core
+   * @memberof module:workbox-home
    */
 
   const putWrapper = async ({
@@ -816,7 +816,7 @@ this.workbox.core = (function (exports) {
    * @return {Response} A cached response if available.
    *
    * @private
-   * @memberof module:workbox-core
+   * @memberof module:workbox-home
    */
 
 
@@ -879,7 +879,7 @@ this.workbox.core = (function (exports) {
    * @return {Promise<Response>}
    *
    * @private
-   * @memberof module:workbox-core
+   * @memberof module:workbox-home
    */
 
 
@@ -946,7 +946,7 @@ this.workbox.core = (function (exports) {
    * @return {Promise<Request>}
    *
    * @private
-   * @memberof module:workbox-core
+   * @memberof module:workbox-home
    */
 
 
@@ -1391,7 +1391,7 @@ this.workbox.core = (function (exports) {
    * @return {Promise<Response>}
    *
    * @private
-   * @memberof module:workbox-core
+   * @memberof module:workbox-home
    */
 
   const wrappedFetch = async ({
@@ -1423,7 +1423,7 @@ this.workbox.core = (function (exports) {
       finalAssertExports.isInstance(request, Request, {
         paramName: request,
         expectedClass: 'Request',
-        moduleName: 'workbox-core',
+        moduleName: 'workbox-home',
         className: 'fetchWrapper',
         funcName: 'wrappedFetch'
       });
@@ -1554,7 +1554,7 @@ this.workbox.core = (function (exports) {
    * Claim any currently available clients once the service worker
    * becomes active. This is normally used in conjunction with `skipWaiting()`.
    *
-   * @alias workbox.core.clientsClaim
+   * @alias workbox.home.clientsClaim
    */
 
   const clientsClaim = () => {
@@ -1581,7 +1581,7 @@ this.workbox.core = (function (exports) {
    * @return {Object} An object with `precache`, `runtime`, `prefix`, and
    *     `googleAnalytics` properties.
    *
-   * @alias workbox.core.cacheNames
+   * @alias workbox.home.cacheNames
    */
 
   const cacheNames$1 = {
@@ -1629,14 +1629,14 @@ this.workbox.core = (function (exports) {
    * @param {Object} [details.googleAnalytics] The cache name to use for
    *     `workbox-google-analytics` caching.
    *
-   * @alias workbox.core.setCacheNameDetails
+   * @alias workbox.home.setCacheNameDetails
    */
 
   const setCacheNameDetails = details => {
     {
       Object.keys(details).forEach(key => {
         finalAssertExports.isType(details[key], 'string', {
-          moduleName: 'workbox-core',
+          moduleName: 'workbox-home',
           funcName: 'setCacheNameDetails',
           paramName: `details.${key}`
         });
@@ -1678,7 +1678,7 @@ this.workbox.core = (function (exports) {
    * Force a service worker to become active, instead of waiting. This is
    * normally used in conjunction with `clientsClaim()`.
    *
-   * @alias workbox.core.skipWaiting
+   * @alias workbox.home.skipWaiting
    */
 
   const skipWaiting = () => {
@@ -1709,4 +1709,4 @@ this.workbox.core = (function (exports) {
   return exports;
 
 }({}));
-//# sourceMappingURL=workbox-core.dev.js.map
+//# sourceMappingURL=workbox-home.dev.js.map

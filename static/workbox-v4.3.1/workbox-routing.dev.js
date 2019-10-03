@@ -796,7 +796,7 @@ this.workbox.routing = (function (exports, assert_mjs, logger_mjs, cacheNames_mj
    * @param {Object} [options]
    * @param {string} [options.cacheName] Cache name to store and retrieve
    * requests. Defaults to precache cache name provided by
-   * [workbox-core.cacheNames]{@link workbox.core.cacheNames}.
+   * [workbox-home.cacheNames]{@link workbox.core.cacheNames}.
    * @param {Array<RegExp>} [options.blacklist=[]] If any of these patterns
    * match, the route will not handle the request (even if a whitelist entry
    * matches).

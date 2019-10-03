@@ -68,7 +68,7 @@ function _assertThisInitialized(self) {
 }
 
 try {
-  self['workbox:core:4.3.1'] && _();
+  self['workbox:home:4.3.1'] && _();
 } catch (e) {} // eslint-disable-line
 
 /*

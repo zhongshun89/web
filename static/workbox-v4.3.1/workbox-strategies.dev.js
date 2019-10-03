@@ -61,7 +61,7 @@ this.workbox.strategies = (function (exports, logger_mjs, assert_mjs, cacheNames
      * @param {Object} options
      * @param {string} options.cacheName Cache name to store and retrieve
      * requests. Defaults to cache names provided by
-     * [workbox-core]{@link workbox.core.cacheNames}.
+     * [workbox-home]{@link workbox.core.cacheNames}.
      * @param {Array<Object>} options.plugins [Plugins]{@link https://developers.google.com/web/tools/workbox/guides/using-plugins}
      * to use in conjunction with this caching strategy.
      * @param {Object} options.fetchOptions Values passed along to the
@@ -253,7 +253,7 @@ this.workbox.strategies = (function (exports, logger_mjs, assert_mjs, cacheNames
      * @param {Object} options
      * @param {string} options.cacheName Cache name to store and retrieve
      * requests. Defaults to cache names provided by
-     * [workbox-core]{@link workbox.core.cacheNames}.
+     * [workbox-home]{@link workbox.core.cacheNames}.
      * @param {Array<Object>} options.plugins [Plugins]{@link https://developers.google.com/web/tools/workbox/guides/using-plugins}
      * to use in conjunction with this caching strategy.
      * @param {Object} options.matchOptions [`CacheQueryOptions`](https://w3c.github.io/ServiceWorker/#dictdef-cachequeryoptions)
@@ -407,7 +407,7 @@ this.workbox.strategies = (function (exports, logger_mjs, assert_mjs, cacheNames
      * @param {Object} options
      * @param {string} options.cacheName Cache name to store and retrieve
      * requests. Defaults to cache names provided by
-     * [workbox-core]{@link workbox.core.cacheNames}.
+     * [workbox-home]{@link workbox.core.cacheNames}.
      * @param {Array<Object>} options.plugins [Plugins]{@link https://developers.google.com/web/tools/workbox/guides/using-plugins}
      * to use in conjunction with this caching strategy.
      * @param {Object} options.fetchOptions Values passed along to the
@@ -731,7 +731,7 @@ this.workbox.strategies = (function (exports, logger_mjs, assert_mjs, cacheNames
      * @param {Object} options
      * @param {string} options.cacheName Cache name to store and retrieve
      * requests. Defaults to cache names provided by
-     * [workbox-core]{@link workbox.core.cacheNames}.
+     * [workbox-home]{@link workbox.core.cacheNames}.
      * @param {Array<Object>} options.plugins [Plugins]{@link https://developers.google.com/web/tools/workbox/guides/using-plugins}
      * to use in conjunction with this caching strategy.
      * @param {Object} options.fetchOptions Values passed along to the
@@ -870,7 +870,7 @@ this.workbox.strategies = (function (exports, logger_mjs, assert_mjs, cacheNames
      * @param {Object} options
      * @param {string} options.cacheName Cache name to store and retrieve
      * requests. Defaults to cache names provided by
-     * [workbox-core]{@link workbox.core.cacheNames}.
+     * [workbox-home]{@link workbox.core.cacheNames}.
      * @param {Array<Object>} options.plugins [Plugins]{@link https://developers.google.com/web/tools/workbox/guides/using-plugins}
      * to use in conjunction with this caching strategy.
      * @param {Object} options.fetchOptions Values passed along to the

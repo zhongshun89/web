@@ -196,7 +196,7 @@ this.workbox.googleAnalytics = (function (exports, Plugin_mjs, cacheNames_mjs, g
   /**
    * @param {Object=} [options]
    * @param {Object} [options.cacheName] The cache name to store and retrieve
-   *     analytics.js. Defaults to the cache names provided by `workbox-core`.
+   *     analytics.js. Defaults to the cache names provided by `workbox-home`.
    * @param {Object} [options.parameterOverrides]
    *     [Measurement Protocol parameters](https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters),
    *     expressed as key/value pairs, to be added to replayed Google Analytics
