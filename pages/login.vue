@@ -28,7 +28,7 @@
                 <ValidationProvider v-slot="{ errors }" name="用户名" rules="required|max:10">
                   <v-text-field
                     v-model="username"
-                    prepend-icon="person"
+                    prepend-icon="mdi-account"
                     label="名称"
                   />
                   <p class="red--text caption message">
@@ -38,9 +38,9 @@
                 <ValidationProvider v-slot="{ errors }" name="密码" rules="required|min:6">
                   <v-text-field
                     v-model="password"
-                    prepend-icon="lock"
+                    prepend-icon="mdi-lock"
                     label="密码"
-                    :append-icon="showPassword ? 'visibility_off' : 'visibility'"
+                    :append-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
                     :type="showPassword ? 'text' : 'password'"
                     @click:append="showPassword = !showPassword"
                   />
@@ -105,6 +105,8 @@ export default {
           username: this.username,
           password: this.password
         }
+      }).catch((error) => {
+        console.log(error)
       })
     },
     reset () {

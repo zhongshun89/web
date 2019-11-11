@@ -1,27 +1,16 @@
 <template>
   <v-app>
     <v-content>
-      <home-bar />
-      <home-drawer />
       <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut" :duration="400">
         <nuxt />
       </transition>
-      <home-footer />
     </v-content>
   </v-app>
 </template>
 
 <script>
-import HomeDrawer from '~/components/home/Drawer'
-import HomeFooter from '~/components/home/Footer'
-import HomeBar from '~/components/home/Bar'
-
 export default {
-  components: {
-    HomeDrawer,
-    HomeFooter,
-    HomeBar
-  }
+
 }
 </script>
 

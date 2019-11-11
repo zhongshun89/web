@@ -16,5 +16,7 @@ export default {
 
 <style lang="sass" scoped>
   .page
-    background-image: url('/login-bg.jpg')
+    background-image: url('/login-bg.png')
+    background-repeat: no-repeat
+    background-size: 100% 100%
 </style>

@@ -21,7 +21,7 @@ export default {
   loading: { color: '#fff' },
 
   css: [
-    'material-design-icons-iconfont/dist/material-design-icons.css',
+    '@mdi/font/css/materialdesignicons.css',
     'animate.css/animate.css'
   ],
 
@@ -50,7 +50,6 @@ export default {
 
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
-    defaultAssets: false,
     treeShake: true,
     optionsPath: './vuetify.options.js'
   },
