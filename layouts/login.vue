@@ -1,22 +1,19 @@
 <template>
-  <v-app>
-    <v-content class="page">
-      <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut" :duration="400">
-        <nuxt />
-      </transition>
-    </v-content>
+  <v-app class="c-app">
+    <nuxt />
   </v-app>
 </template>
 
 <script>
 export default {
-
 }
 </script>
 
-<style lang="sass" scoped>
-  .page
-    background-image: url('/login-bg.png')
-    background-repeat: no-repeat
-    background-size: 100% 100%
+<style lang="sass">
+  html
+    overflow: hidden !important
+    -ms-overflow-style: none
+  html::-webkit-scrollbar
+    width: 0
+    height: 0
 </style>

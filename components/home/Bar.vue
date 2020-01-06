@@ -1,29 +1,23 @@
 <template>
-  <v-app-bar
-    app
-    color="bar"
-    flat
-  >
+  <v-app-bar app flat color="barGrey">
     <v-toolbar-title class="tertiary--text font-weight-light align-self-center">
       <v-btn icon @click.stop="toggleDrawer">
         <v-icon>mdi-view-list</v-icon>
       </v-btn>
-      {{ title }}
+      {{ linkText }}
     </v-toolbar-title>
     <v-spacer />
     <v-toolbar-items>
       <v-row align="center" class="mx-0">
         <v-text-field
-          class="mr-4 purple-input"
-          color="purple"
-          label="搜索..."
+          v-model="searchInput"
+          label="搜索"
+          class="mr-4"
           hide-details
+          single-line
+          append-icon="mdi-magnify"
+          @click:append="search"
         />
-        <v-btn icon to="/">
-          <v-icon color="tertiary">
-            mdi-view-dashboard
-          </v-icon>
-        </v-btn>
         <v-menu
           bottom
           left
@@ -34,13 +28,12 @@
             <v-btn
               class="toolbar-items"
               icon
-              to="/notifications"
               v-bind="attrs"
               v-on="on"
             >
               <v-badge color="error" overlap>
                 <template slot="badge">
-                  {{ notifications.length }}
+                  {{ messages.length }}
                 </template>
                 <v-icon color="tertiary">
                   mdi-bell
@@ -51,15 +44,15 @@
           <v-card>
             <v-list dense>
               <v-list-item
-                v-for="notification in notifications"
-                :key="notification"
+                v-for="(item, index) in messages"
+                :key="`message_${index}`"
               >
-                <v-list-item-title v-text="notification" />
+                <v-list-item-title v-text="item" />
               </v-list-item>
             </v-list>
           </v-card>
         </v-menu>
-        <v-btn to="/user-profile" icon>
+        <v-btn to="profile" icon>
           <v-icon color="tertiary">
             mdi-account
           </v-icon>
@@ -70,32 +63,41 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   data () {
     return {
-      notifications: [
+      searchInput: '',
+      messages: [
         'Mike, John responded to your email',
         'You have 5 new tasks',
         'You\'re now a friend with Andrew',
         'Another Notification',
         'Another One'
-      ],
-      title: '首页'
+      ]
     }
+  },
+  computed: {
+    ...mapState([
+      'linkText'
+    ])
   },
   watch: {
     '$route' (val) {
-      if (val.name === 'index') {
-        this.title = '首页'
-      }
+      this.searchInput = ''
+      this.emptySearch()
     }
   },
   methods: {
     ...mapMutations([
-      'toggleDrawer'
-    ])
+      'toggleDrawer',
+      'setSearch',
+      'emptySearch'
+    ]),
+    search () {
+      this.setSearch(this.searchInput)
+    }
   }
 }
 </script>

@@ -1,87 +1,70 @@
 <template>
-  <v-container
-    class="fill-height"
-    fluid
-  >
+  <v-content class="page">
     <v-row
       align="center"
       justify="center"
+      class="page__title"
+      no-gutters
+    >
+      <p class="display-2 white--text">
+        三宝管理系统
+      </p>
+    </v-row>
+    <v-row
+      align="center"
+      justify="center"
+      calsss="page__form"
+      no-gutters
     >
       <v-col
-        cols="12"
-        sm="8"
-        md="3"
+        cols="3"
       >
-        <v-card class="elevation-12">
-          <v-toolbar
-            color="primary"
-            dark
-            flat
+        <ValidationObserver ref="observer" v-slot="{ invalid, passes }">
+          <form class="px-1 page__form__input" @submit.prevent="passes(login)">
+            <ValidationProvider v-slot="{ errors }" name="用户名" rules="required|max:10">
+              <v-text-field
+                v-model="username"
+                dark
+                label="用户名"
+              />
+              <p class="error--text caption">
+                {{ errors[0] }}
+              </p>
+            </ValidationProvider>
+            <ValidationProvider v-slot="{ errors }" name="密码" rules="required|min:6">
+              <v-text-field
+                v-model="password"
+                dark
+                label="密码"
+                :append-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
+                :type="showPassword ? 'text' : 'password'"
+                @click:append="showPassword = !showPassword"
+              />
+              <p class="error--text caption">
+                {{ errors[0] }}
+              </p>
+            </ValidationProvider>
+          </form>
+          <v-btn
+            rounded
+            width="100%"
+            @click.prevent="passes(login)"
           >
-            <v-toolbar-title class="headline">
-              三宝管理系统
-            </v-toolbar-title>
-          </v-toolbar>
-          <ValidationObserver ref="observer" v-slot="{ invalid, passes }">
-            <v-card-text>
-              <form @submit.prevent="passes(login)">
-                <ValidationProvider v-slot="{ errors }" name="用户名" rules="required|max:10">
-                  <v-text-field
-                    v-model="username"
-                    prepend-icon="mdi-account"
-                    label="名称"
-                  />
-                  <p class="red--text caption message">
-                    {{ errors[0] }}
-                  </p>
-                </ValidationProvider>
-                <ValidationProvider v-slot="{ errors }" name="密码" rules="required|min:6">
-                  <v-text-field
-                    v-model="password"
-                    prepend-icon="mdi-lock"
-                    label="密码"
-                    :append-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
-                    :type="showPassword ? 'text' : 'password'"
-                    @click:append="showPassword = !showPassword"
-                  />
-                  <p class="red--text caption message">
-                    {{ errors[0] }}
-                  </p>
-                </ValidationProvider>
-              </form>
-            </v-card-text>
-            <v-card-actions>
-              <div class="flex-grow-1" />
-              <v-btn color="primary" @click="reset">
-                重置
-              </v-btn>
-              <v-btn :disabled="invalid" color="primary" @click.prevent="passes(login)">
-                登入
-              </v-btn>
-            </v-card-actions>
-          </ValidationObserver>
-        </v-card>
+            登入
+          </v-btn>
+          <p class="subtitle-1 error--text text-center page__error">
+            {{ error }}
+          </p>
+        </ValidationObserver>
       </v-col>
     </v-row>
-  </v-container>
+  </v-content>
 </template>
 
 <script>
 import { ValidationProvider, ValidationObserver, extend } from 'vee-validate'
 import { required, max, min } from 'vee-validate/dist/rules'
 import zh from 'vee-validate/dist/locale/zh_CN'
-extend('required', {
-  ...required,
-  message: zh.messages.required
-})
-extend('max', {
-  ...max,
-  message: zh.messages.max
-})
-extend('min', {
-  ...min,
-  message: zh.messages.min
-})
 
 export default {
   layout: 'login',
@@ -94,24 +77,38 @@ export default {
       username: '',
       password: '',
       error: '',
-      showPassword: false,
-      title: '三宝管理系统'
+      showPassword: false
     }
   },
+  created () {
+    extend('required', {
+      ...required,
+      message: zh.messages.required
+    })
+    extend('max', {
+      ...max,
+      message: zh.messages.max
+    })
+    extend('min', {
+      ...min,
+      message: zh.messages.min
+    })
+  },
   methods: {
-    login () {
-      return this.$auth.loginWith('local', {
+    async login () {
+      await this.$auth.loginWith('local', {
         data: {
           username: this.username,
           password: this.password
         }
       }).catch((error) => {
-        console.log(error)
+        this.error = error.response.data.detail
       })
     },
     reset () {
       this.username = ''
       this.password = ''
+      this.error = ''
       this.$refs.observer.reset()
     }
   }
@@ -119,6 +116,16 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  .message
-    margin-left: 2rem
+  .page
+    overflow: hidden !important
+    background: url('/bg2.png') center no-repeat
+    background-size: 100% 100%
+    &__title
+      height: 38%
+    &__form
+      height: 62%
+      &__input
+        padding-bottom: 10%
+    &__error
+      margin-top: 15%
 </style>

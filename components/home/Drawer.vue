@@ -1,12 +1,10 @@
 <template>
   <v-navigation-drawer
     v-model="inputValue"
-    src="/nav-bg.jpg"
     app
-    color="grey darken-2"
+    fixed
+    color="primary"
     dark
-    floating
-    persistent
   >
     <template v-slot:img="attrs">
       <v-img
@@ -15,10 +13,9 @@
       />
     </template>
     <v-list-item two-line>
-      <v-list-item-avatar color="white">
+      <v-list-item-avatar title color="white">
         <v-img
           src="/logo.png"
-          contain
         />
       </v-list-item-avatar>
 
@@ -33,8 +30,10 @@
       <v-list-item
         v-for="(link, i) in links"
         :key="`drawer_${i}`"
+        exact
         :to="link.to"
-        active-class="primary white--text"
+        exact-active-class="primary white--text"
+        @click="clickLink(link)"
       >
         <v-list-item-action>
           <v-icon>{{ link.icon }}</v-icon>
@@ -44,7 +43,7 @@
     </v-list>
     <template v-slot:append>
       <div class="pa-2">
-        <v-btn block color="accent" @click="logout">
+        <v-btn block dark color="secondary" @click="logout">
           登出
         </v-btn>
       </div>
@@ -57,25 +56,26 @@ import { mapMutations, mapState } from 'vuex'
 
 export default {
   data () {
-    return {
-      links: [
+    return {}
+  },
+  computed: {
+    ...mapState([
+      'drawer'
+    ]),
+    links () {
+      return [
         {
           to: '/',
           icon: 'mdi-view-dashboard',
           text: '首页'
         },
         {
-          to: '/users',
+          to: 'users',
           icon: 'mdi-account',
           text: '用户管理'
         }
       ]
-    }
-  },
-  computed: {
-    ...mapState([
-      'drawer'
-    ]),
+    },
     inputValue: {
       get () {
         return this.drawer
@@ -85,14 +85,23 @@ export default {
       }
     }
   },
-
+  created () {
+    this.setLinkText('首页')
+  },
   methods: {
     ...mapMutations([
-      'setDrawer'
+      'setDrawer',
+      'setLinkText'
     ]),
-    logout () {
-      this.$auth.logout()
+    clickLink (link) {
+      this.setLinkText(link.text)
+    },
+    async logout () {
+      console.log('logout')
+      await this.$auth.logout()
     }
   }
 }
 </script>
+<style lang="sass" scoped>
+</style>

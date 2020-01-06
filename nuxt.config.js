@@ -8,7 +8,7 @@ export default {
     title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no, minimal-ui' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
@@ -25,7 +25,14 @@ export default {
     'animate.css/animate.css'
   ],
 
-  plugins: [],
+  plugins: [
+    '@/plugins/confirm',
+    '@/plugins/axios'
+    // {
+    //   src: '~/plugins/socket.io.js',
+    //   ssr: false
+    // }
+  ],
 
   buildModules: [
     '@nuxtjs/eslint-module',
@@ -45,7 +52,9 @@ export default {
         manifest: false
       }
     ],
-    ['@nuxtjs/moment', { defaultLocale: 'zh-cn', locales: ['zh-cn'] }]
+    ['@nuxtjs/moment', { defaultLocale: 'zh-cn', locales: ['zh-cn'] }],
+    '@nuxtjs/device',
+    'cookie-universal-nuxt'
   ],
 
   vuetify: {
@@ -69,6 +78,10 @@ export default {
       target: process.env.SERVER_HTTP_URL,
       ws: false
     },
+    '/media': {
+      target: process.env.SERVER_HTTP_URL,
+      ws: false
+    },
     '/socket': {
       target: process.env.SERVER_SOCKET_URL,
       ws: true
@@ -77,6 +90,8 @@ export default {
 
   auth: {
     localStorage: false,
+    rewriteRedirects: true,
+    fullPathRedirect: true,
     redirect: {
       login: '/login',
       logout: '/login',
@@ -95,7 +110,10 @@ export default {
 
   router: {
     middleware: [
+      'device',
       'auth'
     ]
-  }
+  },
+
+  layoutTransition: 'layout'
 }
