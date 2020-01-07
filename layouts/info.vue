@@ -1,8 +1,6 @@
 <template>
   <v-app>
-    <transition enter-active-class="animated fadeIn" :duration="400">
-      <nuxt />
-    </transition>
+    <nuxt />
   </v-app>
 </template>
 

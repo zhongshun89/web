@@ -33,7 +33,6 @@ export const actions = {
     const options = cloneDeep(state.pagination)
     options.search = rootState.search
     const url = genUrl(USERS_URL, options)
-    console.log('result url:', url)
     commit('setLoading', true)
     await this.$axios.$get(url).then((res) => {
       commit('setLoading', false)
@@ -45,6 +44,8 @@ export const actions = {
     await this.$axios.$post(USERS_URL, data)
       .then(() => {
         dispatch('fetch')
+      }).catch((error) => {
+        dispatch('notices/pushError', error.response, { root: true })
       })
   },
   async update ({ rootState, dispatch }, data) {
@@ -52,6 +53,8 @@ export const actions = {
     await this.$axios.$put(url, data)
       .then(() => {
         dispatch('fetch')
+      }).catch((error) => {
+        dispatch('notices/pushError', error.response, { root: true })
       })
   },
   async remove ({ commit, dispatch }, data) {
@@ -59,6 +62,8 @@ export const actions = {
     await this.$axios.$delete(url)
       .then(() => {
         dispatch('fetch')
+      }).catch((error) => {
+        dispatch('notices/pushError', error.response, { root: true })
       })
   }
 }

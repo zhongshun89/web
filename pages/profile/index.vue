@@ -53,22 +53,12 @@
         </v-list-item>
         <v-list-item class="mt-5">
           <v-list-item-content>
-            <v-btn
-              color="primary"
-              @click.prevent="resetPassword"
-            >
-              修改密码
-            </v-btn>
+            <Password></Password>
           </v-list-item-content>
         </v-list-item>
         <v-list-item>
           <v-list-item-content>
-            <v-btn
-              color="primary"
-              @click.prevent="uploadAvatar"
-            >
-              上传头像
-            </v-btn>
+            <Avatar></Avatar>
           </v-list-item-content>
         </v-list-item>
       </v-col>
@@ -77,17 +67,20 @@
 </template>
 
 <script>
+import Password from '~/components/profile/Password'
+import Avatar from '~/components/profile/Avatar'
 
 export default {
+  components: {
+    Password,
+    Avatar
+  },
   data () {
     return {
       reloadFlag: false
     }
   },
-  methods: {
-    resetPassword () {},
-    uploadAvatar () {}
-  }
+  methods: {}
 }
 </script>
 

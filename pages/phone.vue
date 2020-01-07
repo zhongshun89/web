@@ -14,7 +14,7 @@
 <script>
 export default {
   auth: false,
-  layout: 'phone',
+  layout: 'prompt',
   data () {
     return {}
   }

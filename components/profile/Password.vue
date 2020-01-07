@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" persistent>
+  <v-dialog max-width="20%" v-model="dialog" persistent>
     <template v-slot:activator="{ on }">
       <v-btn color="primary" v-on="on">
         修改密码
@@ -26,7 +26,6 @@
                   <ValidationProvider v-slot="{ errors }" name="oldPassword" rules="required|min:6">
                     <v-text-field
                       v-model="oldPassword"
-                      autofocus
                       label="老密码"
                     />
                     <p class="error--text caption">
@@ -42,7 +41,7 @@
                       {{ errors[0] }}
                     </p>
                   </ValidationProvider>
-                  <ValidationProvider v-slot="{ errors }" name="confirmPassword" rules="required|confirmed:password">
+                  <ValidationProvider v-slot="{ errors }" name="confirmPassword" rules="required|confirmed:newPassword">
                     <v-text-field
                       v-model="confirmPassword"
                       label="确认新密码"
@@ -114,18 +113,23 @@ export default {
     })
   },
   methods: {
+    ...mapActions('notices', [
+      'pushError'
+    ]),
     ...mapActions(moduleName, [
       'updatePassword'
     ]),
     async submit () {
       const updateParameter = {
-        id: this.$auth.user.user,
         oldPassword: this.oldPassword,
         newPassword: this.confirmPassword
       }
-      await this.updatePassword(updateParameter)
-      this.close()
-      await this.$auth.logout()
+      await this.updatePassword(updateParameter).then((res) => {
+        this.close()
+        this.$auth.logout()
+      }).catch((error) => {
+        this.pushError(error.response)
+      })
     },
     close () {
       this.oldPassword = ''
@@ -139,5 +143,4 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-
 </style>

@@ -20,7 +20,7 @@
       </v-list-item-avatar>
 
       <v-list-item-title class="title">
-        三宝管理系统
+        智慧公厕
       </v-list-item-title>
     </v-list-item>
 

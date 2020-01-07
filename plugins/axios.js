@@ -1,12 +1,8 @@
 export default function ({ $axios, store }) {
-  $axios.onError((error) => {
-    if (error.response.config.url !== '/api/token_auth/') {
-      store.dispatch('notices/pushError', error.response)
-    }
-  })
   $axios.onResponse((response) => {
+    const ignoreUrlList = ['/api/token_auth/', '/api/users/set_password/']
     if (response.config.method !== 'get') {
-      if (response.config.url !== '/api/token_auth/') {
+      if (!ignoreUrlList.includes(response.config.url)) {
         store.dispatch('notices/pushInfo', response)
       }
     }

@@ -7,7 +7,7 @@
       no-gutters
     >
       <p class="display-2 white--text">
-        三宝管理系统
+        智慧公厕
       </p>
     </v-row>
     <v-row
@@ -52,16 +52,24 @@
           >
             登入
           </v-btn>
-          <p class="subtitle-1 error--text text-center page__error">
-            {{ error }}
-          </p>
         </ValidationObserver>
       </v-col>
+    </v-row>
+    <v-row justify="center" align="center" class="page__help">
+      <v-btn
+        color="white"
+        text
+        small
+        to="/retrievePassword"
+      >
+        忘记密码
+      </v-btn>
     </v-row>
   </v-content>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import { ValidationProvider, ValidationObserver, extend } from 'vee-validate'
 import { required, max, min } from 'vee-validate/dist/rules'
 import zh from 'vee-validate/dist/locale/zh_CN'
@@ -76,7 +84,6 @@ export default {
     return {
       username: '',
       password: '',
-      error: '',
       showPassword: false
     }
   },
@@ -95,6 +102,9 @@ export default {
     })
   },
   methods: {
+    ...mapActions('notices', [
+      'pushError'
+    ]),
     async login () {
       await this.$auth.loginWith('local', {
         data: {
@@ -102,13 +112,13 @@ export default {
           password: this.password
         }
       }).catch((error) => {
-        this.error = error.response.data.detail
+        this.pushError(error.response)
       })
     },
     reset () {
       this.username = ''
       this.password = ''
-      this.error = ''
+      // this.error = ''
       this.$refs.observer.reset()
     }
   }
@@ -126,6 +136,6 @@ export default {
       height: 62%
       &__input
         padding-bottom: 10%
-    &__error
-      margin-top: 15%
+    &__help
+      margin-top: 5%
 </style>
