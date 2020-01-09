@@ -53,12 +53,12 @@
         </v-list-item>
         <v-list-item class="mt-5">
           <v-list-item-content>
-            <Password></Password>
+            <Password />
           </v-list-item-content>
         </v-list-item>
         <v-list-item>
           <v-list-item-content>
-            <Avatar></Avatar>
+            <Avatar />
           </v-list-item-content>
         </v-list-item>
       </v-col>

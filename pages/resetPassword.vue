@@ -5,8 +5,8 @@
         <form @submit.prevent="passes(submit)">
           <ValidationProvider v-slot="{ errors }" name="newPassword" rules="required|min:6">
             <v-text-field
-              dark
               v-model="newPassword"
+              dark
               label="新密码"
             />
             <p class="error--text caption">
@@ -15,8 +15,8 @@
           </ValidationProvider>
           <ValidationProvider v-slot="{ errors }" name="confirmPassword" rules="required|confirmed:newPassword">
             <v-text-field
-              dark
               v-model="confirmPassword"
+              dark
               label="确认新密码"
             />
             <p class="error--text caption">
@@ -30,7 +30,8 @@
           width="100%"
           color="white"
           :disabled="invalid"
-          @click.prevent="passes(submit)">
+          @click.prevent="passes(submit)"
+        >
           下一步
         </v-btn>
       </ValidationObserver>
@@ -47,8 +48,11 @@ import { mapActions } from 'vuex'
 const moduleName = 'account'
 
 export default {
-  auth: false,
+  auth: 'guest',
   layout: 'prompt',
+  validate ({ query }) {
+    return query.userId && query.token
+  },
   components: {
     ValidationProvider,
     ValidationObserver
@@ -86,12 +90,14 @@ export default {
       'resetPassword'
     ]),
     async submit () {
-      const updateParameter = {
-        id: this.$auth.user.user,
-        newPassword: this.confirmPassword
+      const data = {
+        user_id: this.$route.query.userId,
+        password: this.confirmPassword
       }
-      await this.resetPassword(updateParameter)
-      this.reset()
+      await this.$auth.setUserToken(this.$route.query.token)
+      await this.resetPassword(data).then((res) => {
+        this.$auth.logout()
+      })
     },
     reset () {
       this.newPassword = ''

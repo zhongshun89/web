@@ -1,5 +1,5 @@
 <template>
-  <v-dialog max-width="20%" v-model="dialog" persistent>
+  <v-dialog v-model="dialog" max-width="20%" persistent>
     <template v-slot:activator="{ on }">
       <v-btn color="primary" v-on="on">
         上传头像
@@ -22,8 +22,8 @@
           >
             <v-col>
               <v-file-input
-                prepend-icon="mdi-account"
                 v-model="avatar"
+                prepend-icon="mdi-account"
                 show-size
                 accept="image/*"
                 :rules="avatarRules"
@@ -74,7 +74,6 @@ export default {
       'updateAvatar'
     ]),
     async submit () {
-      console.log('avatar:', this.avatar)
       const data = {
         id: this.$auth.user.id,
         avatar: this.avatar

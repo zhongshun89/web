@@ -97,7 +97,6 @@ export default {
       this.setLinkText(link.text)
     },
     async logout () {
-      console.log('logout')
       await this.$auth.logout()
     }
   }

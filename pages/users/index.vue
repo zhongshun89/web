@@ -65,7 +65,7 @@
                           </ValidationProvider>
                         </v-col>
                         <v-col cols="6">
-                          <ValidationProvider v-slot="{ errors }" name="邮箱" rules="email">
+                          <ValidationProvider v-slot="{ errors }" name="邮箱" rules="required|email">
                             <v-text-field
                               v-model="actionItem.email"
                               prepend-icon="mdi-email"
@@ -235,7 +235,6 @@ export default {
     },
     pagination: {
       handler () {
-        console.log('handler pagination:', this.pagination)
         this.setPagination(this.pagination)
         this.fetch()
       },

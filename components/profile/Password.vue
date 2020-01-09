@@ -1,5 +1,5 @@
 <template>
-  <v-dialog max-width="20%" v-model="dialog" persistent>
+  <v-dialog v-model="dialog" max-width="20%" persistent>
     <template v-slot:activator="{ on }">
       <v-btn color="primary" v-on="on">
         修改密码
