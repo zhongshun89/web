@@ -8,7 +8,7 @@
       </transition>
       <home-footer class="c-content__footer" />
     </v-content>
-    <Snackbar></Snackbar>
+    <Snackbar />
   </v-app>
 </template>
 

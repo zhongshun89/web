@@ -1,7 +1,7 @@
 <template>
   <v-app class="c-app">
     <nuxt />
-    <Snackbar></Snackbar>
+    <Snackbar />
   </v-app>
 </template>
 

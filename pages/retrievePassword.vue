@@ -7,8 +7,10 @@
         class="text-center c-row__text"
         color="white"
         indeterminate
-      ></v-progress-circular>
-      <p v-show="success" class="text-center title white--text c-row__text">发送成功，请登入邮箱查看。</p>
+      />
+      <p v-show="success" class="text-center title white--text c-row__text">
+        发送成功，请登入邮箱查看。
+      </p>
       <ValidationObserver ref="observer" v-slot="{ invalid, passes }">
         <ValidationProvider v-slot="{ errors }" name="邮箱" rules="required|email">
           <v-text-field
