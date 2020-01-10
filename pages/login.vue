@@ -7,7 +7,7 @@
       no-gutters
     >
       <p class="display-2 white--text">
-        智慧公厕
+        三宝管理系统
       </p>
     </v-row>
     <v-row
@@ -128,7 +128,7 @@ export default {
 <style lang="sass" scoped>
   .page
     overflow: hidden !important
-    background: url('/bg2.png') center no-repeat
+    background: url('/login-bg2.png') center no-repeat
     background-size: 100% 100%
     &__title
       height: 38%
