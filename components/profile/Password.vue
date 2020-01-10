@@ -113,9 +113,6 @@ export default {
     })
   },
   methods: {
-    ...mapActions('notices', [
-      'pushError'
-    ]),
     ...mapActions(moduleName, [
       'updatePassword'
     ]),
@@ -124,11 +121,9 @@ export default {
         oldPassword: this.oldPassword,
         newPassword: this.confirmPassword
       }
-      await this.updatePassword(updateParameter).then((res) => {
+      await this.updatePassword(updateParameter).then(() => {
         this.close()
         this.$auth.logout()
-      }).catch((error) => {
-        this.pushError(error.response)
       })
     },
     close () {

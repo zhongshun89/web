@@ -95,7 +95,7 @@ export default {
         password: this.confirmPassword
       }
       await this.$auth.setUserToken(this.$route.query.token)
-      await this.resetPassword(data).then((res) => {
+      await this.resetPassword(data).then(() => {
         this.$auth.logout()
       })
     },

@@ -70,9 +70,11 @@ export default {
       this.success = false
       this.retrievePassword({
         email: this.email
-      }).then((res) => {
+      }).then(() => {
         this.loading = false
         this.success = true
+      }).catch(() => {
+        this.loading = false
       })
     }
   }

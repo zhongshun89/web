@@ -15,18 +15,21 @@ export const actions = {
     await this.$axios.$post(UPDATE_PASSWORD_URL, data)
       .catch((error) => {
         dispatch('notices/pushError', error.response, { root: true })
+        throw error
       })
   },
   async resetPassword ({ commit, dispatch }, data) {
     await this.$axios.$post(RESET_PASSWORD_URL, data)
       .catch((error) => {
         dispatch('notices/pushError', error.response, { root: true })
+        throw error
       })
   },
   async retrievePassword ({ commit, dispatch }, data) {
     await this.$axios.$post(RETRIEVE_PASSWORD_URL, data)
       .catch((error) => {
         dispatch('notices/pushError', error.response, { root: true })
+        throw error
       })
   },
   async updateAvatar ({ commit, dispatch }, data) {
