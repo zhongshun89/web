@@ -4,9 +4,8 @@
     color="barGrey"
     height="60"
   >
-    <v-row class="c-row">
-      <v-col v-if="drawer" class="placeholder" />
-      <v-col class="text-left" align-self="center">
+    <v-row justify-content="space-between">
+      <v-col :class="[ 'text-left', drawer ? 'placeholder' : '']" align-self="center">
         <v-btn text small>
           官网
         </v-btn>
@@ -14,8 +13,7 @@
           联系我们
         </v-btn>
       </v-col>
-      <v-spacer />
-      <v-col cols="7" class="text-right" align-self="center">
+      <v-col class="text-right" align-self="center">
         <span class="copyright">
           &copy;{{ (new Date()).getFullYear() }} 三宝管理系统
         </span>
@@ -41,5 +39,5 @@ export default {
 
 <style lang="sass" scoped>
   .placeholder
-    width: 9vw
+    margin-left: 256px  // drawer的默认宽度是256px
 </style>
