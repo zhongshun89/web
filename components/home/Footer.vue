@@ -2,7 +2,7 @@
   <v-footer
     fixed
     color="barGrey"
-    height="60"
+    class="c-footer"
   >
     <v-row justify-content="space-between">
       <v-col :class="[ 'text-left', drawer ? 'placeholder' : '']" align-self="center">
@@ -38,6 +38,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+  .c-footer
+    height: $footer-height !important
   .placeholder
     margin-left: 256px  // drawer的默认宽度是256px
 </style>

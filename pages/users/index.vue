@@ -7,9 +7,10 @@
       :server-items-length="count"
       :loading="loading"
       loading-text="加载中,请稍后..."
+      :footer-props="{'items-per-page-options': [10, 15, 20, -1]}"
       multi-sort
       must-sort
-      class="elevation-1"
+      class="elevation-1 c-table"
     >
       <template v-slot:top>
         <v-toolbar flat color="white">

@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app flat color="barGrey">
+  <v-app-bar app flat color="barGrey" class="c-bar">
     <v-toolbar-title class="tertiary--text font-weight-light align-self-center">
       <v-btn icon @click.stop="toggleDrawer">
         <v-icon>mdi-view-list</v-icon>
@@ -103,4 +103,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+  .c-bar
+    height: $bar-height !important
 </style>
