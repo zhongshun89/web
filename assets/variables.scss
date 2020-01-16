@@ -6,9 +6,10 @@
 $bar-height: 64px;
 $footer-height: 60px;
 
-.c-table {
-  max-height: calc(100vh - #{$footer-height} - #{$bar-height});
-  overflow-y: auto
+// fix table header and footer
+// 64px is table top slot height, 60px is table footer height.
+.v-data-table__wrapper{
+  height: calc(100vh - #{$footer-height} - #{$bar-height} - 64px - 60px) !important;
 }
 
 .layout-enter-active, .layout-leave-active {

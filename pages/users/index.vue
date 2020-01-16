@@ -1,6 +1,7 @@
 <template>
   <v-container class="pa-0" fluid>
     <v-data-table
+      fixed-header
       :headers="headers"
       :items="users"
       :options.sync="pagination"
@@ -10,7 +11,7 @@
       :footer-props="{'items-per-page-options': [10, 15, 20, -1]}"
       multi-sort
       must-sort
-      class="elevation-1 c-table"
+      class="elevation-1"
     >
       <template v-slot:top>
         <v-toolbar flat color="white">
