@@ -1,4 +1,4 @@
-# vue test project
+# Vue Test Project
 
 ``` bash
 # install dependencies
