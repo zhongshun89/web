@@ -1,6 +1,4 @@
-# Triple Gems 后台管理系统
-
-## 编译部署
+# vue test project
 
 ``` bash
 # install dependencies
